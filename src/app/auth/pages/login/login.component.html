@@ -4,20 +4,37 @@
       <mat-card-title>Iniciar Sesión</mat-card-title>
     </mat-card-header>
 
-    <form class="example-form">
+    <form
+      class="example-form"
+      autocomplete="off"
+      [formGroup]="miFormulario"
+      (ngSubmit)="login()"
+    >
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" />
+          <input matInput placeholder="Email" formControlName="email" />
+          <mat-error *ngIf="campoEsValido('email')"
+            >Debe ser un email válido</mat-error
+          >
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Contraseña" />
+          <input matInput placeholder="Contraseña" formControlName="password" />
+          <mat-error *ngIf="campoEsValido('password')"
+            >Contraseña requerida</mat-error
+          >
         </mat-form-field>
       </mat-card-content>
 
       <!-- Buttons -->
       <div fxLayout="column" fxLayoutGap=" 5px">
-        <button mat-flat-button color="primary" class="btn-block">
+        <button
+          mat-flat-button
+          color="primary"
+          class="btn-block"
+          type="submit"
+          [disabled]="miFormulario.invalid"
+        >
           Iniciar sesión
         </button>
         <button
