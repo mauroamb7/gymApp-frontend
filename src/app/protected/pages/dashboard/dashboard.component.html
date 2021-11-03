@@ -1,1 +1,9 @@
-<p>dashboard works!</p>
+<h1>Dashboard</h1>
+<mat-divider></mat-divider>
+
+<p>Solo autenticado</p>
+
+<h4>User info</h4>
+<pre> {{ usuario | json }} </pre>
+
+<button mat-button (click)="logout()">Logout</button>

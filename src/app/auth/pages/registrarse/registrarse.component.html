@@ -41,9 +41,12 @@
           <input
             matInput
             placeholder="Contraseña*"
-            type="password"
+            [type]="!hide ? 'password' : 'text'"
             formControlName="password"
           />
+          <mat-icon (click)="hide = !hide" matSuffix>{{
+            hide ? "visibility_off" : "visibility"
+          }}</mat-icon>
           <mat-error *ngIf="campoEsValido('password')"
             >La contraseña debe contener al menos 6 caracteres</mat-error
           >

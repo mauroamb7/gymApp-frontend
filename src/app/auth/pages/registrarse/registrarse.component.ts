@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrarse',
@@ -7,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./registrarse.component.css'],
 })
 export class RegistrarseComponent implements OnInit {
+  hide: boolean = false;
+
   miFormulario: FormGroup = this.fb.group({
     nombre: ['', [Validators.required]],
     apellido: ['', [Validators.required]],
@@ -18,7 +21,7 @@ export class RegistrarseComponent implements OnInit {
     ],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -38,5 +41,6 @@ export class RegistrarseComponent implements OnInit {
     }
 
     console.log(this.miFormulario.value);
+    this.router.navigateByUrl('/auth/login');
   }
 }

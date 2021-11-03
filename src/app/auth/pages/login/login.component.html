@@ -19,7 +19,15 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Contraseña" formControlName="password" />
+          <input
+            matInput
+            [type]="!hide ? 'password' : 'text'"
+            placeholder="Contraseña"
+            formControlName="password"
+          />
+          <mat-icon (click)="hide = !hide" matSuffix>{{
+            hide ? "visibility_off" : "visibility"
+          }}</mat-icon>
           <mat-error *ngIf="campoEsValido('password')"
             >Contraseña requerida</mat-error
           >
