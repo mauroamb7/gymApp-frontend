@@ -15,6 +15,7 @@ import { ErrorDialogComponent } from '../../components/error-dialog/error-dialog
 export class LoginComponent implements OnInit {
   //Ver o esconder contraseña en input
   hide: boolean = false;
+  spinner: boolean = false;
 
   miFormulario: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -38,6 +39,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.spinner = true;
+
     //Verificamos campos del formulario
     if (this.miFormulario.invalid) {
       //Marca todos los campos como touched=true para mostrar los errores defi
@@ -48,6 +51,7 @@ export class LoginComponent implements OnInit {
     const { email, password } = this.miFormulario.value;
 
     this.authService.login(email, password).subscribe((ok) => {
+      this.spinner = false;
       if (ok) {
         this.router.navigateByUrl('/dashboard');
       } else {

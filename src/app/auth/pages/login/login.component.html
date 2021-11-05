@@ -6,7 +6,7 @@
 
     <form
       class="example-form"
-      autocomplete="off"
+      autocomplete="on"
       [formGroup]="miFormulario"
       (ngSubmit)="login()"
     >
@@ -36,15 +36,23 @@
 
       <!-- Buttons -->
       <div fxLayout="column" fxLayoutGap=" 5px">
-        <button
-          mat-flat-button
-          color="primary"
-          class="btn-block"
-          type="submit"
-          [disabled]="miFormulario.invalid"
-        >
-          Iniciar sesión
-        </button>
+        <!-- btn login container -->
+        <div class="button-container">
+          <div class="spinner-container" *ngIf="spinner">
+            <mat-spinner diameter="24"></mat-spinner>
+          </div>
+          <button
+            mat-flat-button
+            color="primary"
+            class="btn-block"
+            type="submit"
+            [disabled]="miFormulario.invalid || spinner"
+          >
+            Iniciar sesión
+          </button>
+        </div>
+        <!-- fin btn login container -->
+
         <button
           mat-stroked-button
           color="link"
