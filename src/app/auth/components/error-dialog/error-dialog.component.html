@@ -1,12 +1,20 @@
 <div fxLayout="column" fxLayoutAlign="center center">
   <img
     class="image-cont animate__animated animate__rubberBand"
-    src="https://icon-library.com/images/image-error-icon/image-error-icon-9.jpg"
+    [src]="data.imageSrc"
   />
 
-  <h1 mat-dialog-title>Ooops!</h1>
-  <div mat-dialog-content>Email o contraseña incorrectos.</div>
+  <h1 mat-dialog-title>{{ data.exito ? "Genial!" : "Ooops!" }}</h1>
+  <div mat-dialog-content>
+    {{ data.msg || "No se pudo completar la acción" }}
+  </div>
   <div mat-dialog-actions>
-    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button
+      mat-raised-button
+      [color]="data.exito ? 'primary' : 'warn'"
+      mat-dialog-close="true"
+    >
+      Cerrar
+    </button>
   </div>
 </div>

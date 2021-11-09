@@ -72,14 +72,22 @@
         </mat-form-field> -->
       </mat-card-content>
 
-      <button
-        mat-stroked-button
-        color="primary"
-        class="btn-block"
-        type="submit"
-      >
-        Registrarse
-      </button>
+      <!-- btn registrarse container -->
+      <div class="button-container">
+        <div class="spinner-container" *ngIf="spinner">
+          <mat-spinner diameter="24"></mat-spinner>
+        </div>
+        <button
+          mat-stroked-button
+          color="primary"
+          class="btn-block"
+          type="submit"
+          [disabled]="miFormulario.invalid || spinner"
+        >
+          Registrarse
+        </button>
+      </div>
     </form>
+    <pre>{{ miFormulario.value | json }}</pre>
   </mat-card>
 </div>

@@ -46,7 +46,7 @@ export class AuthService {
       //Transformamos la respuesta para tener solo el campo 'ok'
       map((resp) => resp.ok),
       //Devolvemos 'false' si hay error pasado como observable
-      catchError((err) => of(false))
+      catchError((err) => of(err.error.msg))
     );
   }
 
@@ -77,5 +77,24 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
+  }
+
+  registrar(
+    nombre: string,
+    apellido: string,
+    email: string,
+    password: string,
+    dni: number
+  ) {
+    const url = `${this.baseUrl}/user`;
+    const body = { nombre, apellido, email, password, dni };
+
+    return this.http.post<AuthResponse>(url, body).pipe(
+      //Transformamos la respuesta para tener solo el campo 'ok'
+      map((resp) => {
+        return resp.ok;
+      }),
+      catchError((err) => of(err.error.msg))
+    );
   }
 }

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { ErrorDialogComponent } from '../../components/error-dialog/error-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
 import { AuthService } from '../../services/auth.service';
-import { ErrorDialogComponent } from '../../components/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -52,11 +52,18 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(email, password).subscribe((ok) => {
       this.spinner = false;
-      if (ok) {
+
+      if (ok === true) {
         this.router.navigateByUrl('/dashboard');
       } else {
-        // TODO mostrar mensaje de error
-        this.dialog.open(ErrorDialogComponent);
+        this.dialog.open(ErrorDialogComponent, {
+          data: {
+            msg: ok,
+            imageSrc:
+              'https://icon-library.com/images/image-error-icon/image-error-icon-9.jpg',
+            exito: false,
+          },
+        });
       }
     });
 

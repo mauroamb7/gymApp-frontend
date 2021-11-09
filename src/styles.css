@@ -130,6 +130,7 @@ body {
 .button-container {
   display: inline-block;
   position: relative;
+  width: 100%;
 }
 
 .spinner-container {
