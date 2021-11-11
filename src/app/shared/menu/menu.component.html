@@ -1,41 +1,14 @@
 <mat-sidenav-container fullscreen>
   <mat-sidenav #sidenav mode="push">
     <!-- Menu toolbar -->
-    <mat-toolbar color="primary">
-      <!-- <span>Menu</span>
-      <span class="spacer"></span>
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button> -->
-    </mat-toolbar>
+    <mat-toolbar color="primary"> </mat-toolbar>
 
     <!-- Listado del menu -->
     <mat-nav-list>
-      <a
-        [routerLink]="[homeMenu.ruta]"
-        mat-list-item
-        (click)="sidenav.toggle()"
-      >
-        <mat-icon mat-list-icon>{{ homeMenu.icon }}</mat-icon>
-        <span>{{ homeMenu.texto }}</span>
-      </a>
-
-      <!-- Menu item del component -->
-      <a
-        *ngFor="let item of authMenu"
-        [routerLink]="[item.ruta]"
-        routerLinkActive="active"
-        mat-list-item
-        (click)="sidenav.toggle()"
-      >
-        <mat-icon mat-list-icon>{{ item.icon }}</mat-icon>
-        <span>{{ item.texto }}</span>
-      </a>
-
-      <!-- <a routerLink="./registro" mat-list-item (click)="sidenav.toggle()">
-        <mat-icon mat-list-icon>app_registration</mat-icon>
-        <span>Registrarse</span>
-      </a> -->
+      <!-- Auth menu -->
+      <div *ngIf="!isLogged">
+        <app-auth-menu (click)="sidenav.toggle()"></app-auth-menu>
+      </div>
     </mat-nav-list>
     <!-- Fin Listado del menu -->
   </mat-sidenav>
@@ -44,9 +17,16 @@
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <!-- <span>Menu</span> -->
-    <!-- <button mat-raised-button (click)="logout()">Logout</button> -->
+
+    <!-- btn logout-->
+    <div *ngIf="isLogged" fxLayout="row" fxFlex fxLayoutAlign="end">
+      <button mat-button (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon> Logout
+      </button>
+    </div>
   </mat-toolbar>
+
+  <!-- Content -->
   <div class="container">
     <router-outlet></router-outlet>
   </div>

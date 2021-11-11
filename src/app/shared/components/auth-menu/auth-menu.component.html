@@ -1,0 +1,11 @@
+<a
+  *ngFor="let item of authMenu"
+  [routerLink]="[item.ruta]"
+  routerLinkActive="active"
+  mat-list-item
+>
+  <mat-icon mat-list-icon>{{ item.icon }}</mat-icon>
+  <span>{{ item.texto }}</span>
+</a>
+
+<!-- (click)="sidenav.toggle()" -->

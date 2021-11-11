@@ -1,12 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
-import { of, Observable } from 'rxjs';
+import { of, Observable, BehaviorSubject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 
 import { AuthResponse, Usuario } from '../interfaces/auth.interface';
+
+const helper = new JwtHelperService();
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +17,19 @@ import { AuthResponse, Usuario } from '../interfaces/auth.interface';
 export class AuthService {
   private baseUrl: string = environment.baseURL;
   private _usuario!: Usuario;
+  private loggedIn = new BehaviorSubject<boolean>(false);
 
   get usuario() {
     return { ...this._usuario };
   }
 
-  constructor(private http: HttpClient) {}
+  get isLogged(): Observable<boolean> {
+    return this.loggedIn.asObservable();
+  }
+
+  constructor(private http: HttpClient) {
+    this.checkToken();
+  }
 
   //Login service
   login(email: string, password: string) {
@@ -36,6 +46,9 @@ export class AuthService {
           // guardamos token en localstorage
           localStorage.setItem('token', user.token!);
 
+          //Seteamos loggedIn
+          this.loggedIn.next(true);
+
           this._usuario = {
             nombre: user.nombre!,
             uid: user.uid!,
@@ -45,7 +58,7 @@ export class AuthService {
       }),
       //Transformamos la respuesta para tener solo el campo 'ok'
       map((resp) => resp.ok),
-      //Devolvemos 'false' si hay error pasado como observable
+      //Devolvemos el mensaje de error como observable
       catchError((err) => of(err.error.msg))
     );
   }
@@ -76,7 +89,9 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.clear();
+    localStorage.removeItem('token');
+    //Seteamos loggedIn
+    this.loggedIn.next(false);
   }
 
   registrar(
@@ -96,5 +111,12 @@ export class AuthService {
       }),
       catchError((err) => of(err.error.msg))
     );
+  }
+
+  private checkToken() {
+    const userToken = localStorage.getItem('token');
+    let isExpired = helper.isTokenExpired(userToken!);
+
+    isExpired ? this.logout() : this.loggedIn.next(true);
   }
 }

@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       this.spinner = false;
 
       if (ok === true) {
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/app');
       } else {
         this.dialog.open(ErrorDialogComponent, {
           data: {

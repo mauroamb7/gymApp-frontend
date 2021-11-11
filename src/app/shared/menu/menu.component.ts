@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-interface menuItem {
-  texto: string;
-  ruta: string;
-  icon: string;
-}
+import { Router } from '@angular/router';
+import { AuthService } from '../../auth/services/auth.service';
+import { menuItem } from '../interfaces/menu.interface';
 
 @Component({
   selector: 'app-menu',
@@ -12,25 +9,19 @@ interface menuItem {
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  homeMenu: menuItem = {
-    texto: 'Inicio',
-    ruta: './home',
-    icon: 'home',
-  };
-  authMenu: menuItem[] = [
-    {
-      texto: 'Registro',
-      ruta: './auth/registro',
-      icon: 'app_registration',
-    },
-    {
-      texto: 'Login',
-      ruta: './auth/login',
-      icon: 'login',
-    },
-  ];
+  isLogged: boolean = false;
 
-  constructor() {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //Para separar el menu
+    this.authService.isLogged.subscribe((value) => {
+      value ? (this.isLogged = true) : (this.isLogged = false);
+    });
+  }
+
+  logout() {
+    this.router.navigateByUrl('/auth');
+    this.authService.logout();
+  }
 }
