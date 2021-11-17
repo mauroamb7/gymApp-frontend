@@ -9,6 +9,11 @@
       <div *ngIf="!isLogged">
         <app-auth-menu (click)="sidenav.toggle()"></app-auth-menu>
       </div>
+
+      <!-- Admin menu -->
+      <div *ngIf="isAdmin">
+        <app-admin-menu (click)="sidenav.toggle()"></app-admin-menu>
+      </div>
     </mat-nav-list>
     <!-- Fin Listado del menu -->
   </mat-sidenav>

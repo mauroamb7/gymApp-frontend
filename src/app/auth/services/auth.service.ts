@@ -80,7 +80,7 @@ export class AuthService {
           uid: resp.uid!,
           rol: resp.rol!,
         };
-        console.log(resp);
+        //console.log(resp);
 
         return resp.ok;
       }),

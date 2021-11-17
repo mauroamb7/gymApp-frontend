@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { menuItem } from '../../interfaces/menu.interface';
 
 @Component({
@@ -6,7 +6,7 @@ import { menuItem } from '../../interfaces/menu.interface';
   templateUrl: './auth-menu.component.html',
   styles: [],
 })
-export class AuthMenuComponent implements OnInit {
+export class AuthMenuComponent {
   authMenu: menuItem[] = [
     {
       texto: 'Inicio',
@@ -24,7 +24,4 @@ export class AuthMenuComponent implements OnInit {
       icon: 'login',
     },
   ];
-  constructor() {}
-
-  ngOnInit(): void {}
 }

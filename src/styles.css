@@ -13,6 +13,10 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.container {
+  padding: 10px 10px 10px 25px;
+}
+
 /* Toma todo el espacio restante y lo empuja a los bordes */
 .spacer {
   flex: 1 1 auto;
