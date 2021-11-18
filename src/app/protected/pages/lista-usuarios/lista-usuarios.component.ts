@@ -57,4 +57,8 @@ export class ListaUsuariosComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  verDetalles(uid: string) {
+    console.log('uid:', uid);
+  }
 }

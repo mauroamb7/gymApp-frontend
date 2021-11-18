@@ -4,7 +4,7 @@ export interface AuthResponse {
   apellido?: string;
   email?: string;
   token?: string;
-  rol?: Rol[];
+  rol: Rol[];
   uid?: string;
   dni?: number;
 }
