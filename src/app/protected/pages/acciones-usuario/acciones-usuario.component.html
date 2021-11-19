@@ -1,1 +1,9 @@
 <p>acciones-usuario works!</p>
+<mat-progress-bar
+  *ngIf="spinner; else contentUser"
+  mode="indeterminate"
+></mat-progress-bar>
+
+<ng-template #contentUser>
+  <pre>{{ user | json }}</pre>
+</ng-template>

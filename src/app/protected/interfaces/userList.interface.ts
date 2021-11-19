@@ -3,6 +3,11 @@ export interface UserList {
   usuarios: Usuario[];
 }
 
+export interface userResponse {
+  ok: boolean;
+  user: Usuario;
+}
+
 export interface Usuario {
   nombre: string;
   apellido: string;
@@ -13,7 +18,6 @@ export interface Usuario {
   google: boolean;
   createdAt: Date;
   uid: string;
-  indice?: number;
 }
 
 export interface Rol {
