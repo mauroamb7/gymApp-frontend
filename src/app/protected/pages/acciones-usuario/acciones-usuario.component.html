@@ -1,9 +1,88 @@
-<p>acciones-usuario works!</p>
+<div fxLayout="row" fxLayout.xs="column">
+  <h1>Detalles del cliente</h1>
+</div>
+<mat-divider></mat-divider>
 <mat-progress-bar
   *ngIf="spinner; else contentUser"
   mode="indeterminate"
 ></mat-progress-bar>
 
 <ng-template #contentUser>
-  <pre>{{ user | json }}</pre>
+  <div fxLayout="row" fxLayout.xs="column">
+    <!-- User card -->
+    <div fxFlex="50%">
+      <mat-card class="card-details">
+        <mat-card-title>{{ user.nombre }} {{ user.apellido }}</mat-card-title>
+
+        <mat-card-content>
+          <!-- List -->
+          <mat-list role="list">
+            <div mat-subheader>
+              <mat-icon>account_circle</mat-icon> Datos del usuario
+            </div>
+            <mat-list-item role="listitem">
+              <div mat-line>Email</div>
+              <div mat-line>{{ user.email }}</div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <div mat-line>N° de documento</div>
+              <div mat-line>{{ user.dni }}</div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <div mat-line>Estado: {{ user.estado }}</div>
+              <div mat-line>
+                <span *ngIf="user.estado" class="material-icons green-color"
+                  >circle</span
+                >
+                <span *ngIf="!user.estado" class="material-icons red-color"
+                  >circle</span
+                >
+              </div>
+            </mat-list-item>
+          </mat-list>
+          <!-- fin lista -->
+        </mat-card-content>
+
+        <!-- Buttons -->
+        <mat-card-actions align="end">
+          <button mat-button>Editar</button>
+          <button
+            *ngIf="user.estado"
+            mat-raised-button
+            color="warn"
+            (click)="openDialogDelete()"
+          >
+            Dar de baja
+          </button>
+          <button
+            *ngIf="!user.estado"
+            mat-raised-button
+            (click)="openDialogAlta()"
+            color="primary"
+          >
+            Dar de alta
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <!-- Fin User card -->
+
+    <!-- Cuota card -->
+    <div fxFlex="50%">
+      <mat-card class="card-details">
+        <mat-card-title>Detalles de la cuota</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <mat-card-content>
+          <p>This card indeterminates progress bar.</p>
+          <p>long text</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <!-- fin cuota card -->
+  </div>
+  <!-- <pre>{{ user | json }}</pre> -->
 </ng-template>

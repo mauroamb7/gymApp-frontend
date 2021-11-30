@@ -8,9 +8,10 @@ import { ProtectedRoutingModule } from './protected-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ListaUsuariosComponent } from './pages/lista-usuarios/lista-usuarios.component';
 import { AccionesUsuarioComponent } from './pages/acciones-usuario/acciones-usuario.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
-  declarations: [DashboardComponent, ListaUsuariosComponent, AccionesUsuarioComponent],
+  declarations: [DashboardComponent, ListaUsuariosComponent, AccionesUsuarioComponent, ConfirmDialogComponent],
   imports: [
     CommonModule,
     ProtectedRoutingModule,

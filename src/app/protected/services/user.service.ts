@@ -39,4 +39,26 @@ export class UserServiceService {
 
     return this.http.get<userResponse>(url, { headers });
   }
+
+  deleteUser(id: string) {
+    const url = `${this.baseUrl}/user/${id}`;
+    const headers = new HttpHeaders().set(
+      'x-token',
+      localStorage.getItem('token') || ''
+    );
+
+    return this.http.delete<userResponse>(url, { headers });
+  }
+
+  altaUser(id: string, estadoTrue: boolean) {
+    const url = `${this.baseUrl}/user/${id}`;
+    const body = { estado: estadoTrue };
+    const headers = new HttpHeaders().set(
+      'x-token',
+      localStorage.getItem('token') || ''
+    );
+
+    //TO DO: AGREGAR EL BODY
+    return this.http.patch<userResponse>(url, body, { headers });
+  }
 }

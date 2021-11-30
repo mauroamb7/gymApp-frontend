@@ -1,0 +1,16 @@
+.card-details {
+  padding: 10px;
+  margin: 10px;
+}
+
+.green-color {
+  color: green;
+  text-shadow: 0 0 15px #4dc247;
+  transition: all 0.5s ease;
+}
+
+.red-color {
+  color: red;
+  text-shadow: 0 0 15px #f04838;
+  transition: all 0.5s ease;
+}

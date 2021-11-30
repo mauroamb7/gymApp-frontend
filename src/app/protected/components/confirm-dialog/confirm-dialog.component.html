@@ -1,0 +1,23 @@
+<h2 *ngIf="data.estado" mat-dialog-title>
+  ¿Seguro que desea eliminar a
+  <strong>{{ data.nombre }} {{ data.apellido }}</strong
+  >?
+</h2>
+
+<h2 *ngIf="!data.estado" mat-dialog-title>
+  ¿Seguro que desea dar de alta a
+  <strong>{{ data.nombre }} {{ data.apellido }}</strong
+  >?
+</h2>
+<!-- <mat-dialog-content class="mat-typography">
+  <h3>Develop across all platforms</h3>
+  <p>Learn one way to build applications with Angular and reuse your code and abilities to build
+    apps for any deployment target. For web, mobile web, native mobile and native desktop.</p>
+
+</mat-dialog-content> -->
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
+    Si, estoy seguro
+  </button>
+</mat-dialog-actions>

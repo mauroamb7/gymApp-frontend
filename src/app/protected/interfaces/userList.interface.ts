@@ -5,6 +5,7 @@ export interface UserList {
 
 export interface userResponse {
   ok: boolean;
+  msg?: string;
   user: Usuario;
 }
 
