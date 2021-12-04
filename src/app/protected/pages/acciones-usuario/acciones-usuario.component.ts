@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { Usuario } from '../../interfaces/userList.interface';
 import { UserServiceService } from '../../services/user.service';
-import { AuthService } from '../../../auth/services/auth.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-acciones-usuario',
@@ -20,11 +20,18 @@ export class AccionesUsuarioComponent implements OnInit {
   user!: Usuario;
   id: string = '';
 
+  //formulario datepicker
+  range: FormGroup = this.fb.group({
+    start: [''],
+    end: [''],
+  });
+
   constructor(
     private userService: UserServiceService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private fb: FormBuilder
   ) {
     //atrapamos id de la url
     this.route.params.subscribe(({ id }) => {

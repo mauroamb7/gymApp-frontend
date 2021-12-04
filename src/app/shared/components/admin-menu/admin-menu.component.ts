@@ -14,8 +14,8 @@ export class AdminMenuComponent {
       icon: 'list',
     },
     {
-      texto: 'Registrar pago',
-      ruta: '',
+      texto: 'Valor de cuotas',
+      ruta: './app/valor-cuota',
       icon: 'payment',
     },
   ];

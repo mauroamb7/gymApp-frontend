@@ -5,6 +5,7 @@ import { AccionesUsuarioComponent } from './pages/acciones-usuario/acciones-usua
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ListaUsuariosComponent } from './pages/lista-usuarios/lista-usuarios.component';
+import { ValorCuotaComponent } from './pages/valor-cuota/valor-cuota.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
       {
         path: 'usuario/:id',
         component: AccionesUsuarioComponent,
+        canActivate: [IsAdminGuard],
+      },
+      {
+        path: 'valor-cuota',
+        component: ValorCuotaComponent,
         canActivate: [IsAdminGuard],
       },
       {

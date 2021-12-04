@@ -73,8 +73,40 @@
         <mat-card-title>Detalles de la cuota</mat-card-title>
         <mat-card-subtitle>Dog Breed</mat-card-subtitle>
         <mat-card-content>
-          <p>This card indeterminates progress bar.</p>
-          <p>long text</p>
+          <p>Seleccione fecha de pago y fecha de vencimiento.</p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Seleccione fechas</mat-label>
+              <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                <input
+                  matStartDate
+                  formControlName="start"
+                  placeholder="Start date"
+                />
+                <input
+                  matEndDate
+                  formControlName="end"
+                  placeholder="End date"
+                />
+              </mat-date-range-input>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+
+              <mat-error
+                *ngIf="range.controls.start.hasError('matStartDateInvalid')"
+                >Invalid start date</mat-error
+              >
+              <mat-error
+                *ngIf="range.controls.end.hasError('matEndDateInvalid')"
+                >Invalid end date</mat-error
+              >
+            </mat-form-field>
+          </p>
+
+          <p>Selected range: {{ range.value | json }}</p>
         </mat-card-content>
         <mat-card-actions>
           <button mat-button>LIKE</button>
